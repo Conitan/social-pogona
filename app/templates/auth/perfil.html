@@ -1,0 +1,94 @@
+{% extends './base.html' %}
+
+{% block title %}Perfil{% endblock %}
+
+{% block body %}
+<!-- Perfil de Usuario -->
+<div class="container d-flex justify-content-center align-items-center rounded" style="width: 900px; background-color: rgb(189, 189, 189);">
+    <div>
+        <br>
+        <div class="card" style="width: 45rem;">
+            <br>
+            <div class="text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                </svg>
+                <h3>Usuario</h3>
+            </div>
+            <hr><br>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <hr>
+            <div class="alert alert-primary alert-dismissible" role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <hr>
+            {% endfor %}
+            {%endif%}
+            {% endwith %}
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="card border-0" style="width: 30rem;">
+                    <form action="/update" method="POST">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Usuario</label>
+                            <div class="col-sm-8">
+                              <input type="text" class="form-control" id="inputUsuario" name="nombreUsuario" value="{{ current_user.nombreUsuario }}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Correo</label>
+                            <div class="col-sm-8">
+                              <input type="email" class="form-control" id="inputEmail" name="correoUsuario" value="{{ current_user.correoUsuario }}" readonly>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Edad</label>
+                            <div class="col-sm-8">
+                              <input type="text" class="form-control" id="inputEdad" name="edadUsuario" value="{{ current_user.edadUsuario }}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Telefono</label>
+                            <div class="col-sm-8">
+                              <input type="number" class="form-control" id="inputCell" name="teledonoUsuario" value="{{ current_user.telefonoUsuario }}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Roll</label>
+                            <div class="col-sm-8">
+                              <input type="text" class="form-control" id="inputRol" name="rollUsuario" value="{{ current_user.rolUsuario }}" readonly>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Contraseña</label>
+                            <div class="col-sm-8">
+                              <input type="password" class="form-control" id="inputContra" name="contraUsuario" value="Nueva Contraseña">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-outline-primary">Editar</button>
+                            <a href="../index.html">
+                                <button type="button" class="btn btn-outline-secondary">Cerrar Sesion</button>
+                            </a>
+                        </div>
+                        <hr>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br>
+
+    </div>
+    
+</div>
+{% endblock %}
+
